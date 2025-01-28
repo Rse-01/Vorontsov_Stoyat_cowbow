@@ -8,8 +8,8 @@
 аккомулятор
 динамик
 
+![изображение](https://github.com/user-attachments/assets/53a676cb-8758-4c49-ad14-2c59832c5658)
 
-![Uploading изображение.png…]()
 
 состояния
 ожидание
