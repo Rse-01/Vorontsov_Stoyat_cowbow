@@ -9,9 +9,17 @@ matrix{64}={
 0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,
 }
-
+t_comb {4}={0,0,0,0}
+p1_comb {4}={0,0,0,0}
 
 //вывести данные на экран 
+
+void ochist(){
+
+}
+void stav_cel(){
+  
+}
 void matrix_pokaz(){}
 
 //заменить данные о пикселе на экране
@@ -23,13 +31,11 @@ PinButton myButton(5);
 
 void setup() {
   // Инициализируем серийный порт с частотой 115200 бод. [1](https://github.com/poelstra/arduino-multi-button)
-  Serial.begin(115200);
+Serial.begin(9600);
+    pinMode(BUTTON_PIN, INPUT_PULLUP);  // включаем внутренний подтягивающий резистор
+    lastButtonState = digitalRead(BUTTON_PIN);
 }
 }
-void setup() {
-  // put your setup code here, to run once:
-}
-
 void loop() {
   // put your main code here, to run repeatedly:
   // Считываем аппаратный пин и преобразуем в события нажатия
@@ -41,4 +47,16 @@ void loop() {
   if (myButton.isDoubleClick()) {
     Serial.println("double");
   }
+  
+int buttonState = digitalRead(BUTTON_PIN);
+    if (lastButtonState != buttonState) {  // состояние изменилось
+        delay(50);  // время антидребезга
+        if (buttonState == LOW)
+            Serial.println("Событие нажатия кнопки");
+        else
+            Serial.println("Событие отпускания кнопки");
+        lastButtonState = buttonState;
+    }
 }
+
+
