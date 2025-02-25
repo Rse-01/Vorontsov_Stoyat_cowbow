@@ -1,3 +1,7 @@
+#include "Adafruit_NeoPixel.h"
+#define LED_COUNT 64
+#define LED_PIN 10
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int k[8]={0,0,0,0,0,0,0,0};
 
 void debug(long a){
@@ -43,8 +47,8 @@ void matrix_pokaz(){
   
 }
 
-void setup() {
-  Serial.begin(9600);
+void setup() {{
+  Serial.begin(9600);}
   
   // Инициализируем серийный порт с частотой 115200 бод. [1](https://github.com/poelstra/arduino-multi-button)
     pinMode(2, INPUT_PULLUP);  // включаем внутренний подтягивающий резистор
@@ -56,10 +60,22 @@ void setup() {
     pinMode(8, INPUT_PULLUP);
     pinMode(9, INPUT_PULLUP);
 }
-void loop() {
+
+void loop() {{
   knop(8);
   delay(100);
 }
+for (int i = 0; i < LED_COUNT; i++) {
+strip.setPixelColor(i, strip.Color(255, 0, 0));  // Красный цвет [4](https://Voltiq.ru/arduino-and-ws2812b/)
+  }
+delay(500);
 
+strip.show();  
 
+for (int i = 0; i < LED_COUNT; i++) {
+    strip.setPixelColor(i, strip.Color(0, 0, 0));  // Чёрный цвет, то есть выключено [4](https://Voltiq.ru/arduino-and-ws2812b/)
+  }
+  strip.show();
+  delay(500);
+}
 
