@@ -10,14 +10,14 @@ void debug(long a){
 
 //запомнить состояние экрана 
 int matrix[64]={
-0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,
+1,0,1,1,1,0,1,0,
+1,1,0,1,1,0,1,0,
+1,0,1,1,1,1,1,1,
 0,0,0,0,0,0,0,0,
 1,0,0,0,0,0,0,1,
-1,1,0,0,0,0,1,1,
-1,0,1,1,1,1,0,1,
-1,0,1,0,0,1,0,1,
+1,0,0,0,0,0,0,1,
+1,0,0,0,0,0,0,0,
+1,0,0,0,0,0,0,1,
 };
 int t_comb[4]={0,0,0,0};
 int p1_comb[4]={0,0,0,0};
@@ -25,10 +25,14 @@ int p1_comb[4]={0,0,0,0};
 //вывести данные на экран 
 //---------knop pin 2-9---------------------
 void knop(int a){ 
-    debug(digitalRead(a+1));  
+    //debug(digitalRead(a+1));  
   k[a]=digitalRead(a+1);
 }
 
+void reset(){
+    //debug(digitalRead(a+1));  
+  k[a]=0;
+}
 
 void ochist(){
 
@@ -48,6 +52,7 @@ void matrix_pokaz(){
 }
 
 void setup() {{
+ int s=0
   Serial.begin(9600);}
   
   // Инициализируем серийный порт с частотой 115200 бод. [1](https://github.com/poelstra/arduino-multi-button)
@@ -61,21 +66,38 @@ void setup() {{
     pinMode(9, INPUT_PULLUP);
 }
 
-void loop() {{
-  knop(8);
-  delay(100);
+void loop() {
+//триггеры
+for (a=1; a<#k ;a++){
+  if (k[a]==1){
+    s=1;
+    reset();
+  }
 }
-for (int i = 0; i < LED_COUNT; i++) {
-strip.setPixelColor(i, strip.Color(255, 0, 0));  // Красный цвет [4](https://Voltiq.ru/arduino-and-ws2812b/)
-  }
-delay(500);
 
-strip.show();  
 
-for (int i = 0; i < LED_COUNT; i++) {
-    strip.setPixelColor(i, strip.Color(0, 0, 0));  // Чёрный цвет, то есть выключено [4](https://Voltiq.ru/arduino-and-ws2812b/)
+//-------------------
+//реакции
+// 0.ожидание
+  if (s==0){
+    
   }
-  strip.show();
-  delay(500);
+// 1.игра  
+  if (s==1){
+    matrica_pokaz()
+     knop();
+     
+     
+  }
+// 2.подщёт резултатов
+  if (s==2){
+    
+  }
+// 3.разряжено
+  if (s==3){
+    
+  }
+  
+
 }
 
