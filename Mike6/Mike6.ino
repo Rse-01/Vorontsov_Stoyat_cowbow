@@ -1,3 +1,6 @@
+
+
+
 #include "Adafruit_NeoPixel.h"
 #define LED_COUNT 64
 #define LED_PIN 10
@@ -26,16 +29,19 @@ int matrix[64]={
 int t_comb[4]={0,0,0,0};
 int p1_comb[4]={0,0,0,0};
 
-void zarad()
+void zarad() {
+
+}
 
 
-void pix(a,b){
-  matrix[a]=b
+void pix(int a, int b){
+  matrix[a]=b;
 }
 
 
 
 int k[8]={0,0,0,0,0,0,0,0};
+int s_k=sizeof(k)/sizeof(k[0])
 //вывести данные на экран 
 //---------knop pin 2-9---------------------
 void knop(int a){ 
@@ -44,8 +50,7 @@ void knop(int a){
 }
 
 void reset(){
-    //debug(digitalRead(a+1));  
-  k[a]=0;
+
 }
 
 void ochist(){
@@ -65,9 +70,9 @@ void matrix_pokaz(){
   
 }
 
-void setup() {{
- int s=0
-  Serial.begin(9600);}
+void setup() {
+ int s=0;
+  Serial.begin(9600);
   
   // Инициализируем серийный порт с частотой 115200 бод. [1](https://github.com/poelstra/arduino-multi-button)
     pinMode(2, INPUT_PULLUP);  // включаем внутренний подтягивающий резистор
@@ -89,25 +94,25 @@ void setup() {{
 //7 кнопка выстрел
 //8 кнопка выстрел
 void all_knop(){
-  for(int a=1;a<#k;a++){
+  for(int a=1;a<s_k;a++){
     knop(a);
   }
 }
 
-int p1=42
-int p2=47
+// int p1=42;
+// int p2=47;
 
 void loop() {
 //триггеры
-for (a=1; a<#k ;a++){
+for (a=1; a<s_k ;a++){
   if (k[a]==1){
     s=1;
     reset();
   }
 } 
-  for (a=1; a<#k ;a++){
+  for (a=1; a<s_k ;a++){
     if (k[a]==1){
-      s=1
+      s=1;
     }
   }
 
